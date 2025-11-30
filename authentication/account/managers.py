@@ -14,7 +14,7 @@ class UserManager(BaseUserManager):
             email=email,
             **extra_fields
         )
-        user.set_password(password)
+        user.set_password(password)  #hash password
         user.save(using=self._db)
         return user 
 
