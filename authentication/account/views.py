@@ -13,7 +13,7 @@ from .forms import (
 
 
 class Home(LoginRequiredMixin, generic.TemplateView):
-    login_url = 'login'
+    Login_url = 'login'
     template_name = "account/home.html"
 
 
