@@ -27,16 +27,19 @@ class Login(generic.View):
 
     def post(self, *args, **kwargs):
         form = LoginForm(self.request.POST)
+
         if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(self.request, username=username, password=password)
-            if user is not None:
+            user = authenticate(
+                self.request,
+                username=form.cleaned_data.get('username'),
+                password=form.cleaned_data.get('password')
+            )
+            if user:
                 login(self.request, user)
-                return redirect('home')  # Redirect to home after login
+                return redirect('home')
+
             else:
-                form.add_error(None, "Invalid username or password")
-        context = {
-            "form": form
-        }
-        return render(self.request, 'account/login.html', context)
+                messages.warning(self.request, "Wrong credentials")
+                return redirect('login')
+
+        return render(self.request, 'account/login.html', {"form": form})
