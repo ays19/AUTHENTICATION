@@ -24,6 +24,11 @@ class Login(generic.View):
             "form": form
         }
         return render(self.request, 'account/login.html', context)
+    
+class Logout(generic.View):
+    def get(self, *args, **kwargs):
+        logout(self.request)
+        return redirect('login')    
 
     def post(self, *args, **kwargs):
         form = LoginForm(self.request.POST)
