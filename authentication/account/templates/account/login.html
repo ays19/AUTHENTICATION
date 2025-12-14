@@ -1,6 +1,7 @@
 {% extends '../base.html' %}
 {% block title %} Login {% endblock title %}
 
+
 {% block content %}
 <div class="row centered py-4 px-5 align-items-center d-flex justify-content-center">
     <div>
@@ -14,6 +15,11 @@
         </div>
         <hr>
         
+        {% comment %} message {% endcomment %}
+        {% comment %} <div class="form-group my-2">
+            {% include './message.html' %}
+        </div> {% endcomment %}
+
         <div class="form-group my-1">
             <label for="username">Username or email</label>
             {{form.username}}
@@ -25,9 +31,17 @@
             {{form.password.errors}}
         </div>
         <div class="form-group d-grid gap-2 my-3">
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-dark">Login</button>
         </div>
-        
+        <div class="my-3 mb-2 d-flex flex-column align-items-center justify-content-center">
+            <p class="m-0">
+                Don't have an account ? Please <a class="text-decoration-none px-2 text-primary" href="{% url 'registration' %}">Register here</a>
+            </p>
+            <p class="py-2">
+                <a class="text-decoration-none px-2 text-primary" href="{% url 'password_reset' %}">Forgot password ?</a>
+            </p>
+        </div>
     </form>
 </div>
+
 {% endblock content %}
