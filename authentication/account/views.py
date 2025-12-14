@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
 
 
-from .mixins import (
+from .mixins import ( 
     LogoutRequiredMixin,
 )
 
